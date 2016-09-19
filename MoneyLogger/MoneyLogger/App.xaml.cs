@@ -9,6 +9,8 @@ namespace MoneyLogger
 {
 	public partial class App : Application
 	{
+		//public UserData User;
+
 		public App()
 		{
 			InitializeComponent();
