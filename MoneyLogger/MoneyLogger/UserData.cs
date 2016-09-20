@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
-using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 
 namespace MoneyLogger
 {
@@ -100,21 +100,19 @@ namespace MoneyLogger
 
 		public string SavaAsJson()
 		{
-			JavaScriptSerializer json = new JavaScriptSerializer();
-			return json.Serialize(this);
+			return JsonConvert.SerializeObject(this);
 		}
 
-		//public static async Task<UserData> LoadFromJson(string url)
-		//{
-		//	JavaScriptSerializer json = new JavaScriptSerializer();
+		public static async Task<UserData> LoadFromJsonAsync(string url)
+		{
+			string jsonString;
+			using (HttpClient client = new HttpClient())
+			{
+				jsonString = await client.GetStringAsync(url);
+			}
 
-		//	string jsonString;
-		//	using (HttpClient client = new HttpClient())
-		//	{
-		//		jsonString = await client.GetStringAsync(url);
-		//	}
-
-		//	return json.Deserialize<UserData>(jsonString);
-		//}
+			return JsonConvert.DeserializeObject<UserData>(jsonString);
+		}
 	}
 }
+

@@ -9,7 +9,7 @@ namespace MoneyLogger
 {
 	public partial class App : Application
 	{
-		//public UserData User;
+		public static UserData User { get; set; }
 
 		public App()
 		{

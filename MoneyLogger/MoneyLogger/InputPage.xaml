@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MoneyLogger.InputPage">
+	<ContentPage.Content>
+		<StackLayout Padding="50" Spacing="20">
+
+			<Label Text="How much do you used?"/>
+			<StackLayout Orientation="Horizontal">
+				<Entry x:Name="InputEntry" Keyboard="Numeric" WidthRequest="500"/>
+				<Button x:Name="OKButton" Text="OK"/>
+			</StackLayout>
+
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

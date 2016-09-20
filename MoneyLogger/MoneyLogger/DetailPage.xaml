@@ -10,7 +10,7 @@
 		<StackLayout Padding="25, 50, 25, 50" Spacing="20">
 
 			<StackLayout BackgroundColor="#DCDCDC" Padding="50, 25, 0, 25" Orientation="Horizontal">
-				<Button x:Name="CashButton" Image="cash.png" WidthRequest="50"/>
+				<Button x:Name="CashButton" Image="cash.png" WidthRequest="50" />
 				<StackLayout Orientation="Vertical">
 					<Label Text="Cash"/>
 					<Label Text="{Binding Cash.Temp}"/>
