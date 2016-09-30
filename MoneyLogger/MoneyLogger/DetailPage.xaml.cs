@@ -10,6 +10,14 @@ namespace MoneyLogger
 {
 	public partial class DetailPage : ContentPage
 	{
+		private const int BUTTON_BORDER_WIDTH = 1;
+		private const int BUTTON_HEIGHT = 88;
+		private const int BUTTON_HEIGHT_WP = 144;
+		private const int BUTTON_HALF_HEIGHT = 44;
+		private const int BUTTON_HALF_HEIGHT_WP = 72;
+		private const int BUTTON_WIDTH = 88;
+		private const int BUTTON_WIDTH_WP = 144;
+
 		public DetailPage()
 		{
 			InitializeComponent();

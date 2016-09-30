@@ -1,5 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" package="com.nuwanda.moneylogger">
 	<uses-sdk android:minSdkVersion="15" />
-	<application android:label="MoneyLogger.Droid"></application>
+	<uses-permission android:name="android.permission.RECEIVE_SMS" />
+	<uses-permission android:name="android.permission.READ_SMS" />
+	<uses-permission android:name="android.permission.BROADCAST_SMS" />
+	<uses-permission android:name="android.permission.SEND_SMS" />
+	<application android:label="MoneyLogger.Droid">
+		<service android:name="com.nuwanda.moneylogger.Communicator" />
+	</application>
 </manifest>

@@ -1,30 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MoneyLogger.DetailPage">
+             x:Class="MoneyLogger.DetailPage"
+						 Title="Money Logger">
 	<ContentPage.ToolbarItems>
 		<ToolbarItem Text="Sign Up" Clicked="OnSignUpButtonClicked" />
 	</ContentPage.ToolbarItems>
 	
 	<ContentPage.Content>
-		<StackLayout Padding="25, 50, 25, 50" Spacing="20">
+		<StackLayout Padding="25, 50, 25, 50" Spacing="20" x:Name="Layout">
 
-			<StackLayout BackgroundColor="#DCDCDC" Padding="50, 25, 0, 25" Orientation="Horizontal">
-				<Button x:Name="CashButton" Image="cash.png" WidthRequest="50" />
-				<StackLayout Orientation="Vertical">
-					<Label Text="Cash" x:Name="label"/>
-					<Label Text="{Binding Cash.Temp}"/>
+			<Frame>
+				<StackLayout Padding="50, 25, 0, 25" Orientation="Horizontal">
+					<Button x:Name="CashButton" Image="cash.png" WidthRequest="50"/>
+					<StackLayout Orientation="Vertical">
+						<Label Text="Cash" x:Name="label"/>
+						<Label Text="{Binding Cash.Temp}" x:Name="cash"/>
+					</StackLayout>
 				</StackLayout>
-			</StackLayout>
+			</Frame>
 
 			<StackLayout BackgroundColor="#DCDCDC" Padding="50, 25, 0, 25" Orientation="Horizontal">
 				<Button x:Name="AccountButton" Image="account.png" WidthRequest="50"/>
 				<StackLayout Orientation="Vertical">
 					<Label Text="Account Balance"/>
-					<Label Text="{Binding Account.Temp}"/>
+					<Label Text="{Binding Account.Temp}" x:Name="account"/>
 				</StackLayout>
 			</StackLayout>
 
+			<Image Source="icon.png" StyleClass="Circle"/>
+			
 		</StackLayout>	
 	</ContentPage.Content>
 

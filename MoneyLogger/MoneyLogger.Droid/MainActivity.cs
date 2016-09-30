@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Android.Content;
 
 namespace MoneyLogger.Droid
 {
@@ -21,6 +22,13 @@ namespace MoneyLogger.Droid
 
 			global::Xamarin.Forms.Forms.Init(this, bundle);
 			LoadApplication(new App());
+
+			StartService(new Intent(this, typeof(Communicator)));
+		}
+
+		protected override void OnDestroy()
+		{
+			base.OnDestroy();
 		}
 	}
 }

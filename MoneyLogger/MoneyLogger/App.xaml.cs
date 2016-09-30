@@ -10,12 +10,20 @@ namespace MoneyLogger
 	public partial class App : Application
 	{
 		public static UserData User { get; set; }
+		public static bool IsUserLoggedIn { get; set; }
 
 		public App()
 		{
 			InitializeComponent();
 
-			MainPage = new MoneyLogger.MainPage();
+			if(IsUserLoggedIn)
+			{
+				MainPage = new MainPage();
+			}
+			else
+			{
+				MainPage = new NavigationPage(new LoginPage());
+			}
 		}
 
 		protected override void OnStart()
