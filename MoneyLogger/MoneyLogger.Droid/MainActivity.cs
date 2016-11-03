@@ -10,7 +10,7 @@ using Android.Content;
 
 namespace MoneyLogger.Droid
 {
-	[Activity(Label = "MoneyLogger", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+	[Activity(Label = "Money Logger", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
 	{
 		protected override void OnCreate(Bundle bundle)
@@ -20,9 +20,10 @@ namespace MoneyLogger.Droid
 
 			base.OnCreate(bundle);
 
-			global::Xamarin.Forms.Forms.Init(this, bundle);
+			Xamarin.Forms.Forms.Init(this, bundle);
 			LoadApplication(new App());
 
+			// start sms hooking service
 			StartService(new Intent(this, typeof(Communicator)));
 		}
 

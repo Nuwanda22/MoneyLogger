@@ -61,7 +61,8 @@ namespace MoneyLogger.Droid
 		{
 			public override void OnReceive(Context context, Intent intent)
 			{
-				var messegeBuilder = new StringBuilder();
+				// 정보를 담을 이벤트 매개변수
+				SMSReceivedEventArgs args = new SMSReceivedEventArgs();
 				
 				// 함수가 호출되면 작업에 대한 로그를 남기고
 				Log.Info("SMSBroadcastReceiver", "Intent received: " + intent.Action);
@@ -86,13 +87,12 @@ namespace MoneyLogger.Droid
 					msgs[i] = SmsMessage.CreateFromPdu((byte[])pdus[i], intent.GetStringExtra("format"));
 					
 					// 문자 메시지로부터 송신자 번호와 문자 메시지 내용을 알아낸다.
-					messegeBuilder.AppendLine($"SMS From: {msgs[i].OriginatingAddress}");
-					messegeBuilder.AppendLine($"Body: {msgs[i].MessageBody}");
+					args.Address = msgs[i].OriginatingAddress;
+					args.Message = msgs[i].MessageBody;
 				}
-
-				// 토스트로 출력한다.
-				string message = messegeBuilder.ToString();
-				Toast.MakeText(context, message, ToastLength.Short).Show();
+				
+				// 메시지에 대한 내용을 담아 호출한다.
+				(App.Current as App).CallSMSReceived(null, args);
 			}
 		}
 	}

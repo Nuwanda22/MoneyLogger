@@ -5,12 +5,19 @@
 	<ContentPage.Content>
 		<StackLayout Padding="50" Spacing="20">
 
-			<Label Text="How much do you used?"/>
+			<Label Text="Amount"/>
 			<StackLayout Orientation="Horizontal">
-				<Entry x:Name="InputEntry" Keyboard="Numeric" WidthRequest="500"/>
-				<Button x:Name="OKButton" Text="OK"/>
+				<Entry x:Name="AmountEntry" Keyboard="Numeric" WidthRequest="100" MinimumWidthRequest="100"/>
+				
 			</StackLayout>
 
+			<Label Text="Place"/>
+			<StackLayout Orientation="Horizontal">
+				<Entry x:Name="PlaceEntry" WidthRequest="100" MinimumWidthRequest="100"/>
+			</StackLayout>
+			<Label Text="Set here"/>
+			<Switch x:Name="PlaceSwitch"/>
+<Button x:Name="AmountButton" Text="OK"/>
 		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

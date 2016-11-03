@@ -17,8 +17,8 @@ namespace MoneyLogger
 
 			this.isCash = isCash;
 
-			OKButton.Clicked += OKButtonClicked;
-			InputEntry.TextChanged += InputEntryTextChanged;
+			AmountButton.Clicked += OKButtonClicked;
+			AmountEntry.TextChanged += InputEntryTextChanged;
 		}
 
 		private void InputEntryTextChanged(object sender, TextChangedEventArgs e)
@@ -30,13 +30,18 @@ namespace MoneyLogger
 		private async void OKButtonClicked(object sender, EventArgs e)
 		{
 			// 입력된 문자열 저장
-			string input = InputEntry.Text;
+			string amount = AmountEntry.Text;
+			string place = PlaceEntry.Text;
 
-			// 올바르게 입력되었는지 물어본다.
-			string alert = "입력하신 금액이 " + input + "이 맞습니까?";
+			double money = double.Parse(amount);
+			amount = new Money { Amount = money, Currency = Currency.Won }.ToString(false);
+
+			// 올바르게 입력되었는지 물어본다. 
+			string alert = "입력하신 금액이 " + amount + "원이 맞습니까?";
 			if (await DisplayAlert("", "" + alert, "Yes", "No"))
 			{
-				// 예 이면 앞페이지에 넘긴다.
+				// 예 이면 앞페이지에 넘긴다.	// TODO: Place 입력
+				(App.Current as App).StatementList.Add(new Statement { Amount = money, DateTime = DateTime.Now, Place = place, IsCash = isCash });
 				await Navigation.PopAsync();
 			}
 		}

@@ -86,6 +86,22 @@ namespace MoneyLogger
 			return Currency.ToCurrency() + " " + Amount.ToCurrency(Currency);
 		}
 
+		public string ToString(bool currency)
+		{
+			string money;
+
+			if (currency)
+			{
+				money = Currency.ToCurrency() + " " + Amount.ToCurrency(Currency);
+			}
+			else
+			{
+				money = Amount.ToCurrency(Currency);
+			}
+
+			return money;
+		}
+
 		public string Temp { get { return this.ToString(); } }
 	}
 

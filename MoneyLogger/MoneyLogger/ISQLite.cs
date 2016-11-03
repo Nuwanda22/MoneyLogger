@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
+
+using SQLite;
 
 namespace MoneyLogger
 {
-	public partial class MainPage : MasterDetailPage
+	public interface ISQLite
 	{
-		public MainPage()
-		{
-			InitializeComponent();
-		}
+		SQLiteConnection GetConnection();
 	}
 }
