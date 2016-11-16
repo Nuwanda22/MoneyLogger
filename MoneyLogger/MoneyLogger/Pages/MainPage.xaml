@@ -6,13 +6,13 @@
 									Title="Money Logger">
 
 	<MasterDetailPage.Master>
-		<local:MasterPage />
+		<local:MasterPage x:Name="masterPage" />
 	</MasterDetailPage.Master>
 	
 	<MasterDetailPage.Detail>
 		<NavigationPage>
 			<x:Arguments>
-				<local:DetailPage />
+				<local:DetailPage x:Name="detailPage"/>
 			</x:Arguments>
 		</NavigationPage>
 	</MasterDetailPage.Detail>

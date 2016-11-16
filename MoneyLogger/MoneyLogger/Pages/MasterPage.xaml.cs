@@ -17,12 +17,12 @@ namespace MoneyLogger
 			InitializeComponent();
 
 			var masterPageItems = new List<MasterPageItem>();
-			//masterPageItems.Add(new MasterPageItem
-			//{
-			//	Title = "Contacts",
-			//	IconSource = "contacts.png",
-			//	TargetType = typeof(Pages.SubMainPage)
-			//});
+			masterPageItems.Add(new MasterPageItem
+			{
+				Title = "Account",
+				IconSource = "ic_account_box_black_48dp.png",
+				TargetType = typeof(AccountPage)
+			});
 
 			listView.ItemsSource = masterPageItems;
 		}

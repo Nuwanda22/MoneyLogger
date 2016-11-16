@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MoneyLogger.MasterPage"
+             xmlns:controls="clr-namespace:MoneyLogger;assembly=MoneyLogger"
+						 x:Class="MoneyLogger.MasterPage"
 						 Title="Menu">
 	
 	<ContentPage.Content>
@@ -9,7 +10,13 @@
 			<ListView x:Name="listView" VerticalOptions="FillAndExpand" SeparatorVisibility="None">
 				<ListView.ItemTemplate>
 					<DataTemplate>
-						<ImageCell Text="{Binding Title}" ImageSource="{Binding IconSource}" />
+						
+						<ViewCell>
+							<StackLayout Orientation="Horizontal"> <!--Source="{Binding IconSource}"-->
+								<controls:IconView Source="ic_account_box_black_48dp.png" Foreground="Gray" HeightRequest="48" WidthRequest="48" Margin="10"/>
+								<Label Text="{Binding Title}" TextColor="Black" FontAttributes="Bold" Margin="10"/>
+							</StackLayout>
+						</ViewCell>
 					</DataTemplate>
 				</ListView.ItemTemplate>
 			</ListView>

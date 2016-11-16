@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
+using SQLite;
 
 namespace MoneyLogger
 {
@@ -102,17 +103,29 @@ namespace MoneyLogger
 			return money;
 		}
 
+		[JsonIgnore]
 		public string Temp { get { return this.ToString(); } }
 	}
 
 	/// <summary>
 	/// 사용자 데이터
 	/// </summary>
+	[SQLite.Table("UserData")]
 	public class UserData
 	{
 		public string Name { get; set; }
+		[Ignore]
 		public Money Cash { get; set; }
+		[Ignore]
 		public Money Account { get; set; }
+
+		#region SQLite
+		[PrimaryKey, NotNull, AutoIncrement]
+		private int ID { get; set; }
+		private string cash { get { return JsonConvert.SerializeObject(Cash); } }
+		private string account { get { return JsonConvert.SerializeObject(Account); } }
+		public void Deserialize() { Cash = JsonConvert.DeserializeObject<Money>(cash); Account = JsonConvert.DeserializeObject<Money>(cash); }
+		#endregion
 
 		public string SavaAsJson()
 		{
@@ -121,13 +134,21 @@ namespace MoneyLogger
 
 		public static async Task<UserData> LoadFromJsonAsync(string url)
 		{
-			string jsonString;
-			using (HttpClient client = new HttpClient())
+			try
 			{
-				jsonString = await client.GetStringAsync(url);
-			}
+				string jsonString;
+				using (HttpClient client = new HttpClient())
+				{
+					jsonString = await client.GetStringAsync(url);
+				}
 
-			return JsonConvert.DeserializeObject<UserData>(jsonString);
+				return JsonConvert.DeserializeObject<UserData>(jsonString);
+			}
+			catch (Exception ex)
+			{
+				System.Diagnostics.Debug.WriteLine(ex.Message);
+				return null;
+			}
 		}
 	}
 }

@@ -36,7 +36,7 @@ namespace MoneyLogger
 			if (Username == "admin" && Password == "1234")
 			{
 				// 로컬 DB에 저장하고
-				App.LocalDB.UpdateData(Username, Password);
+				App.LocalDB.Login(Username, Password);
 				// 로그인되면 메인 화면을 띄운다.
 				App.Current.MainPage = new MainPage();
 			}

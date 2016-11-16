@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SQLite;
 
 namespace MoneyLogger
 {
@@ -11,11 +9,13 @@ namespace MoneyLogger
 	/// </summary>
 	public class Statement
 	{
+		[PrimaryKey, NotNull, AutoIncrement]
+		private int ID { get; set; }
 		public double Amount { get; set; }
 		public string Place { get; set; }
 		public DateTime DateTime { get; set; }
 		public bool IsCash { get; set; }
-
+		
 		public override string ToString()
 		{
 			string time = DateTime.ToString();
@@ -23,7 +23,7 @@ namespace MoneyLogger
 			string isCash = IsCash ? "현금" : "카드";
 			return $"{time}에 {Place}에서 {isCash}로 {money}원을 사용하셨습니다.";
 		}
-
+		
 		private static Dictionary<string, Action> actions;
 		/// <summary>
 		/// Extract state data from sms

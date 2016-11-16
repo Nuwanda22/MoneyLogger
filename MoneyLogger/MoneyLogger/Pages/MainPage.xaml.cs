@@ -13,7 +13,18 @@ namespace MoneyLogger
 		{
 			InitializeComponent();
 
-			//(App.Current as App).SMSReceived += (sender, e) => { DisplayAlert(e.Address, e.Message, "OK"); }; 
+			masterPage.ListView.ItemSelected += OnItemSelected;
+		}
+
+		void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+		{
+			MasterPageItem item = e.SelectedItem as MasterPageItem;
+			if (item != null)
+			{
+				detailPage.Navigation.PushAsync((Page)Activator.CreateInstance(item.TargetType));
+				masterPage.ListView.SelectedItem = null;
+				IsPresented = false;
+			}
 		}
 	}
 }

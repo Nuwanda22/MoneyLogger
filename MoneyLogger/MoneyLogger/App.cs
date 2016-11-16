@@ -11,17 +11,17 @@ namespace MoneyLogger
 	public partial class App : Application
 	{
 		public static UserData User { get; set; }           // 유저 데이터
-		public List<Statement> StatementList { get; set; }  // 돈 사용내역
+		public List<Statement> StatementList { get { return LocalDB.StatementList; } }  // 돈 사용내역
 		public event EventHandler<SMSReceivedEventArgs> SMSReceived;    // 문자 수신 이벤트
 
-		static LoginInfoDatabase localDB;
-		public static LoginInfoDatabase LocalDB
+		static LocalDatabase localDB;
+		public static LocalDatabase LocalDB
 		{
 			get
 			{
 				if (localDB == null)
 				{
-					localDB = new LoginInfoDatabase();
+					localDB = new LocalDatabase();
 				}
 				return localDB;
 			}
@@ -41,9 +41,8 @@ namespace MoneyLogger
 		{
 			SMSReceived += (sender, e) =>
 			{
-				StatementList.Add(Statement.ExtractFromSMS(e.Address, e.Message));
+				LocalDB.AddStatement(Statement.ExtractFromSMS(e.Address, e.Message));
 			};
-			StatementList = new List<Statement>();
 
 			// 사용자가 로그인한 기록이 있으면
 			if (IsUserLoggedIn)
