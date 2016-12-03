@@ -15,12 +15,18 @@ namespace MoneyLogger
 		public MasterPage()
 		{
 			InitializeComponent();
-
+			
 			var masterPageItems = new List<MasterPageItem>();
 			masterPageItems.Add(new MasterPageItem
 			{
 				Title = "Account",
 				IconSource = "ic_account_box_black_48dp.png",
+				TargetType = typeof(AccountPage)
+			});
+			masterPageItems.Add(new MasterPageItem
+			{
+				Title = "Settings",
+				IconSource = "ic_settings_black_48dp.png",
 				TargetType = typeof(AccountPage)
 			});
 

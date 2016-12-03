@@ -53,17 +53,19 @@ namespace MoneyLogger
 
 	 	async void ShowLogsClicked(object sender, EventArgs e)
 		{
-			StringBuilder logs = new StringBuilder();
+            //StringBuilder logs = new StringBuilder();
 
-			//syncIndicator = new ActivityIndicator { HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center, IsVisible = false, IsEnabled = true };
+            ////syncIndicator = new ActivityIndicator { HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center, IsVisible = false, IsEnabled = true };
 
-			foreach (var statement in /*(App.Current as App).StatementList*/App.LocalDB.user)
-			{
-				//logs.AppendLine(statement.ToString());
-				logs.AppendLine($"{statement.Name} : {statement.Cash }, {statement.Account}");
-			}
+            //foreach (var statement in /*(App.Current as App).StatementList*/App.LocalDB.user)
+            //{
+            //	//logs.AppendLine(statement.ToString());
+            //	logs.AppendLine($"{statement.Name} : {statement.Cash }, {statement.Account}");
+            //}
 
-			await DisplayAlert("", logs.ToString(), "OK");
+            //await DisplayAlert("", logs.ToString(), "OK");
+
+            DependencyService.Get<ILocalNotification>().PushNotification("title", "please!");
 		}
 
 		//private async Task RefreshItems(bool showActivityIndicator, bool syncItems)

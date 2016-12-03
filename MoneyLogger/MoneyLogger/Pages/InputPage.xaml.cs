@@ -41,7 +41,7 @@ namespace MoneyLogger
 			if (await DisplayAlert("", "" + alert, "Yes", "No"))
 			{
 				// 예 이면 앞페이지에 넘긴다.	// TODO: Place 입력
-				(App.Current as App).StatementList.Add(new Statement { Amount = money, DateTime = DateTime.Now, Place = place, IsCash = isCash });
+			    (App.Current as App).StatementList.Add(new Statement { Amount = money, DateTime = DateTime.Now, Place = place, IsCash = isCash });
 				await Navigation.PopAsync();
 			}
 		}

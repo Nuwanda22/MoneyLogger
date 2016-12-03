@@ -7,15 +7,23 @@
 	
 	<ContentPage.Content>
 		<StackLayout BackgroundColor="#000000FF" VerticalOptions="FillAndExpand">
+			<StackLayout BackgroundColor="Gray" Padding="75">
+				<Label Text="hahaha"></Label>
+			</StackLayout>
 			<ListView x:Name="listView" VerticalOptions="FillAndExpand" SeparatorVisibility="None">
 				<ListView.ItemTemplate>
 					<DataTemplate>
 						
-						<ViewCell>
-							<StackLayout Orientation="Horizontal"> <!--Source="{Binding IconSource}"-->
-								<controls:IconView Source="ic_account_box_black_48dp.png" Foreground="Gray" HeightRequest="48" WidthRequest="48" Margin="10"/>
-								<Label Text="{Binding Title}" TextColor="Black" FontAttributes="Bold" Margin="10"/>
-							</StackLayout>
+						<ViewCell Height="150">
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="1*" />
+									<ColumnDefinition Width="6*" />
+								</Grid.ColumnDefinitions>
+							
+								<controls:IconView Grid.Column="0" Source="{Binding IconSource}" Foreground="Gray" HeightRequest="100" WidthRequest="100" Margin="10"/>
+								<Label Grid.Column="1" Text="{Binding Title}" TextColor="Black" FontAttributes="Bold" Margin="10"/>
+							</Grid>
 						</ViewCell>
 					</DataTemplate>
 				</ListView.ItemTemplate>
