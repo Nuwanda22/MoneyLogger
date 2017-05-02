@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                  xmlns:local="clr-namespace:XaccountBook;assembly=MoneyLogger"
-                  x:Class="XaccountBook.MainPage"
-                  Title="Money Logger">
+                  xmlns:local="clr-namespace:XaccountBook.Pages"
+                  x:Class="XaccountBook.Pages.MainPage"
+                  Title="Xaccount Book">
 
     <MasterDetailPage.Master>
         <local:MasterPage x:Name="masterPage" />

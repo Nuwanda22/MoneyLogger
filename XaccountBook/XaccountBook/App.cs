@@ -5,59 +5,25 @@ using System.Text;
 
 using Xamarin.Forms;
 
+using XaccountBook.Pages;
+using Plugin.Settings.Abstractions;
+using Plugin.Settings;
+
 namespace XaccountBook
 {
 	public partial class App : Application
 	{
-		public static UserData User { get; set; }           // 유저 데이터
-		public List<Statement> StatementList { get { return LocalDB.StatementList; } }  // 돈 사용내역
-		public event EventHandler<SMSReceivedEventArgs> SMSReceived;    // 문자 수신 이벤트
-
-		static LocalDatabase localDB;
-		public static LocalDatabase LocalDB
+        ISettings settings => CrossSettings.Current;
+        
+        public App()
 		{
-			get
-			{
-				if (localDB == null)
-				{
-					localDB = new LocalDatabase();
-				}
-				return localDB;
-			}
-		}
-		public static bool IsUserLoggedIn
-		{
-			get
-			{
-				return LocalDB.IsUserLoggedIn;
-			}
-		}
-
-		/// <summary>
-		/// Default Constuctor
-		/// </summary>
-		public App()
-		{
-			SMSReceived += (sender, e) =>
-			{
-				LocalDB.AddStatement(Statement.ExtractFromSMS(e.Address, e.Message));
-			};
-
-			// 사용자가 로그인한 기록이 있으면
-			if (IsUserLoggedIn)
-			{
-				// 서버로부터 확인하여
-				// TODO: 서버 데이터베이스 연결
-				if (true)
-				{
-					// 메인 화면을 표시한다.
-					MainPage = new MainPage();
-				}
-				else
-				{
-					MainPage = new LoginPage();
-				}
-			}
+            // 사용자가 로그인한 기록이 있고 로그인 정보가 맞으면
+            // TODO: 서버로부터 로그인 확인
+            if (settings.Contains("id") && settings.Contains("password") && true)
+            {
+                // 메인 화면을 표시한다.
+                MainPage = new MainPage();
+            }
 			else
 			{
 				MainPage = new LoginPage();
@@ -66,7 +32,8 @@ namespace XaccountBook
 
 		public void CallSMSReceived(object sender, SMSReceivedEventArgs e)
 		{
-			SMSReceived?.Invoke(sender, e);
-		}
+            // TODO: DB 저장
+            var statement = Statement.ExtractFromSMS(e.Address, e.Message);
+        }
 	}
 }

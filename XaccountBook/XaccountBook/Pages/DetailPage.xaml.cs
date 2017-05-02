@@ -6,36 +6,32 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
-namespace XaccountBook
+namespace XaccountBook.Pages
 {
 	public partial class DetailPage : ContentPage
 	{
 		public DetailPage()
 		{
 			InitializeComponent();
-			InitializeComponentAsync();
-
-			CashButton.Clicked += OnClicked;
-			AccountButton.Clicked += OnClicked;
 		}
 
-		private async void InitializeComponentAsync()
-		{
-			// load user data on web
-			UserData user = await UserData.LoadFromJsonAsync("https://nuwanda22.github.io/userdata.json");
-			
-			if (user != null)
-			{
-				App.User = user;
-				BindingContext = user;
-			}
-			else
-			{
-				await DisplayAlert("No Internet", "Internet was disconnected.\nPlease check connection.", "OK");
-			}
-		}
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
 
-		private async void OnClicked(object sender, EventArgs e)
+            var user = new UserData { Name = "Kyle", Account = new Money { Amount = 100000, Currency = Currency.Won }, Cash = new Money { Amount = 100000, Currency = Currency.Won } };
+
+            if (user != null)
+            {
+                BindingContext = user;
+            }
+            else
+            {
+                await DisplayAlert("No Internet", "Internet was disconnected.\nPlease check connection.", "OK");
+            }
+        }
+
+		private async void Button_Clicked(object sender, EventArgs e)
 		{
 			// 버튼을 가져와
 			Button button = sender as Button;
@@ -51,7 +47,7 @@ namespace XaccountBook
 		//	await Navigation.PushAsync(new Page());
 		//}
 
-	 	async void ShowLogsClicked(object sender, EventArgs e)
+	 	private void ShowLogsClicked(object sender, EventArgs e)
 		{
             //StringBuilder logs = new StringBuilder();
 
@@ -64,53 +60,51 @@ namespace XaccountBook
             //}
 
             //await DisplayAlert("", logs.ToString(), "OK");
-
-            DependencyService.Get<ILocalNotification>().PushNotification("title", "please!");
 		}
 
-		//private async Task RefreshItems(bool showActivityIndicator, bool syncItems)
-		//{
-		//	using (var scope = new ActivityIndicatorScope(syncIndicator, showActivityIndicator))
-		//	{
-		//		//todoList.ItemsSource = await manager.GetTodoItemsAsync(syncItems);
-		//	}
-		//}
+        //private async Task RefreshItems(bool showActivityIndicator, bool syncItems)
+        //{
+        //	using (var scope = new ActivityIndicatorScope(syncIndicator, showActivityIndicator))
+        //	{
+        //		//todoList.ItemsSource = await manager.GetTodoItemsAsync(syncItems);
+        //	}
+        //}
 
-		//private class ActivityIndicatorScope : IDisposable
-		//{
-		//	private bool showIndicator;
-		//	private ActivityIndicator indicator;
-		//	private Task indicatorDelay;
+        //private class ActivityIndicatorScope : IDisposable
+        //{
+        //	private bool showIndicator;
+        //	private ActivityIndicator indicator;
+        //	private Task indicatorDelay;
 
-		//	public ActivityIndicatorScope(ActivityIndicator indicator, bool showIndicator)
-		//	{
-		//		this.indicator = indicator;
-		//		this.showIndicator = showIndicator;
+        //	public ActivityIndicatorScope(ActivityIndicator indicator, bool showIndicator)
+        //	{
+        //		this.indicator = indicator;
+        //		this.showIndicator = showIndicator;
 
-		//		if (showIndicator)
-		//		{
-		//			indicatorDelay = Task.Delay(2000);
-		//			SetIndicatorActivity(true);
-		//		}
-		//		else
-		//		{
-		//			indicatorDelay = Task.FromResult(0);
-		//		}
-		//	}
+        //		if (showIndicator)
+        //		{
+        //			indicatorDelay = Task.Delay(2000);
+        //			SetIndicatorActivity(true);
+        //		}
+        //		else
+        //		{
+        //			indicatorDelay = Task.FromResult(0);
+        //		}
+        //	}
 
-		//	private void SetIndicatorActivity(bool isActive)
-		//	{
-		//		this.indicator.IsVisible = isActive;
-		//		this.indicator.IsRunning = isActive;
-		//	}
+        //	private void SetIndicatorActivity(bool isActive)
+        //	{
+        //		this.indicator.IsVisible = isActive;
+        //		this.indicator.IsRunning = isActive;
+        //	}
 
-		//	public void Dispose()
-		//	{
-		//		if (showIndicator)
-		//		{
-		//			indicatorDelay.ContinueWith(t => SetIndicatorActivity(false), TaskScheduler.FromCurrentSynchronizationContext());
-		//		}
-		//	}
-		//}
-	}
+        //	public void Dispose()
+        //	{
+        //		if (showIndicator)
+        //		{
+        //			indicatorDelay.ContinueWith(t => SetIndicatorActivity(false), TaskScheduler.FromCurrentSynchronizationContext());
+        //		}
+        //	}
+        //}
+    }
 }

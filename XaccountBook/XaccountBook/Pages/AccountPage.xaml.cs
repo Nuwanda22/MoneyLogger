@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plugin.Settings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
-namespace XaccountBook
+namespace XaccountBook.Pages
 {
 	public partial class AccountPage : ContentPage
 	{
@@ -14,14 +15,16 @@ namespace XaccountBook
 		{
 			InitializeComponent();
 		}
+        
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            if (await DisplayAlert("", "정말 로그아웃 하시겠습니까?", "확인", "취소"))
+            {
+                CrossSettings.Current.Remove("id");
+                CrossSettings.Current.Remove("password");
 
-		async void OnLogoutButtonClicked(object sender, EventArgs e)
-		{
-			if (await DisplayAlert("", "정말 로그아웃 하시겠습니까?", "확인", "취소"))
-			{
-				App.LocalDB.Logout();
-				App.Current.MainPage = new LoginPage();
-			}
-		}
-	}
+                App.Current.MainPage = new LoginPage();
+            }
+        }
+    }
 }

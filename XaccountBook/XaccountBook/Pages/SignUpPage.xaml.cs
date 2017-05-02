@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
-namespace XaccountBook
+namespace XaccountBook.Pages
 {
 	public partial class SignUpPage : ContentPage
 	{

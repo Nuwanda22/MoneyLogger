@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XaccountBook.DetailPage"
-             Title="Money Logger">
+             x:Class="XaccountBook.Pages.DetailPage"
+             Title="Xaccount Book">
     <!--<ContentPage.ToolbarItems>
 		<ToolbarItem Text="Sign Up" Clicked="OnSignUpButtonClicked" />
 	</ContentPage.ToolbarItems>-->
@@ -27,7 +27,8 @@
                         HeightRequest="88"
                         MinimumHeightRequest="88"
                         WidthRequest="88"
-                        MinimumWidthRequest="88" />
+                        MinimumWidthRequest="88" 
+                        Clicked="Button_Clicked"/>
                 <StackLayout Padding="0,20,0,0"
                              Orientation="Vertical"
                              HorizontalOptions="Center">
@@ -53,7 +54,8 @@
                         HeightRequest="88"
                         MinimumHeightRequest="88"
                         WidthRequest="88"
-                        MinimumWidthRequest="88" />
+                        MinimumWidthRequest="88" 
+                        Clicked="Button_Clicked"/>
                 <StackLayout Padding="0,20,0,0"
                              Orientation="Vertical"
                              HorizontalOptions="Center">

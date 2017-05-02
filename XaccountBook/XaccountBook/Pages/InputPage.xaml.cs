@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
-namespace XaccountBook
+namespace XaccountBook.Pages
 {
 	public partial class InputPage : ContentPage
 	{
@@ -41,7 +41,7 @@ namespace XaccountBook
 			if (await DisplayAlert("", "" + alert, "Yes", "No"))
 			{
 				// 예 이면 앞페이지에 넘긴다.	// TODO: Place 입력
-			    (App.Current as App).StatementList.Add(new Statement { Amount = money, DateTime = DateTime.Now, Place = place, IsCash = isCash });
+			    var statement = new Statement { Amount = money, DateTime = DateTime.Now, Place = place, IsCash = isCash };
 				await Navigation.PopAsync();
 			}
 		}
