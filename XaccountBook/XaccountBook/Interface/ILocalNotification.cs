@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace XaccountBook
+{
+    public interface ILocalNotification
+    {
+        void PushNotification(string title, string context);
+    }
+}

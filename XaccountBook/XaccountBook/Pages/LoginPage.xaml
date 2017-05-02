@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XaccountBook.LoginPage"
+             Title="Login"
+             BackgroundColor="#00CC99">
+
+    <!--<contentpage.toolbaritems>
+		<toolbaritem text="sign up" clicked="onsignupbuttonclicked" />
+	</contentpage.toolbaritems>-->
+
+    <ContentPage.Content>
+        <StackLayout Padding="10,75"
+                     Spacing="100">
+            <Image Source="login_logo.png"
+                   HeightRequest="100"
+                   MinimumHeightRequest="100"
+                   WidthRequest="200"
+                   MinimumWidthRequest="200" />
+            <Frame>
+                <Grid HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Username"
+                           FontSize="Small"
+                           FontAttributes="Bold"
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           VerticalOptions="Center" />
+                    <Label Text="Password"
+                           FontSize="Small"
+                           FontAttributes="Bold"
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           VerticalOptions="Center" />
+                    <Entry x:Name="usernameEntry"
+                           Grid.Row="0"
+                           Grid.Column="1" />
+                    <Entry x:Name="passwordEntry"
+                           Grid.Row="1"
+                           Grid.Column="1"
+                           IsPassword="true" />
+                    <Button Text="Log In"
+                            TextColor="White"
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            BackgroundColor="#00CC99"
+                            Clicked="OnLoginButtonClicked" />
+                </Grid>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
