@@ -61,38 +61,26 @@ namespace XaccountBook.Droid
 		{
 			public override void OnReceive(Context context, Intent intent)
 			{
-				// 정보를 담을 이벤트 매개변수
-				SMSReceivedEventArgs args = new SMSReceivedEventArgs();
-				
-				// 함수가 호출되면 작업에 대한 로그를 남기고
-				Log.Info("SMSBroadcastReceiver", "Intent received: " + intent.Action);
-				// 메세지 수신에 대한 작업이 아닐 시 함수를 종료한다.
+                // 메세지 수신에 대한 작업이 아닐 시 함수를 종료
 				if (intent.Action != "android.provider.Telephony.SMS_RECEIVED") return;
 
-				// 작업으로부터 정보를 가져와 저장한 뒤,
-				Bundle bundle = intent.Extras;
-				// 정보가 없으면 함수를 종료한다.
-				if (bundle == null) return;
-
-				// 데이터를 PDU(프로토콜 데이터 유닛)로 받는다
+                // 작업으로부터 정보를 가져와 저장
+                // 데이터를 PDU(프로토콜 데이터 유닛)로 받는다
+                var bundle = intent.Extras;
+                if (bundle == null) return;
 				var pdus = JNIEnv.GetArray<Java.Lang.Object>(bundle.Get("pdus").Handle);
 				
 				// 데이터를 문자메세지를 담기 위해 준비한다.
 				SmsMessage[] msgs = new SmsMessage[pdus.Length];
-
-				// 어짜피 Length가 1이라 한 번만 돈다.
 				for (var i = 0; i < msgs.Length; i++)
 				{
 					// 데이터를 문자 메시지로 바꿔 저장한 뒤
 					msgs[i] = SmsMessage.CreateFromPdu((byte[])pdus[i], intent.GetStringExtra("format"));
 					
-					// 문자 메시지로부터 송신자 번호와 문자 메시지 내용을 알아낸다.
-					args.Address = msgs[i].OriginatingAddress;
-					args.Message = msgs[i].MessageBody;
-				}
-				
-				// 메시지에 대한 내용을 담아 호출한다.
-				(App.Current as App).CallSMSReceived(null, args);
+					// 문자 메시지로부터 송신자 번호와 문자 메시지 내용 추출 후
+                    // Forms 단에서 처리하도록 넘김
+                    (App.Current as App).ReceivedSMS(msgs[i].OriginatingAddress, msgs[i].MessageBody);
+                }
 			}
 		}
 	}

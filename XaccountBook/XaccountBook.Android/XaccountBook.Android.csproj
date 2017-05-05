@@ -144,7 +144,6 @@
     <Compile Include="Communicator.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="MainActivity.cs" />
-    <Compile Include="Renderers\IconViewRenderer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

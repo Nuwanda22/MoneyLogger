@@ -30,10 +30,10 @@ namespace XaccountBook
 			}
 		}
 
-		public void CallSMSReceived(object sender, SMSReceivedEventArgs e)
-		{
+        public void ReceivedSMS(string address, string message)
+        {
             // TODO: DB 저장
-            var statement = Statement.ExtractFromSMS(e.Address, e.Message);
+            var statement = Statement.ExtractFromSMS(address, message);
         }
 	}
 }

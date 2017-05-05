@@ -36,7 +36,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Helpers\Settings.cs" />
-    <Compile Include="IconView.cs" />
     <Compile Include="Pages\AccountPage.xaml.cs">
       <DependentUpon>AccountPage.xaml</DependentUpon>
     </Compile>
@@ -61,7 +60,6 @@
     <Compile Include="Pages\SignUpPage.xaml.cs">
       <DependentUpon>SignUpPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\SMSReceivedEventArgs.cs" />
     <Compile Include="Models\Statement.cs" />
     <Compile Include="Models\UserData.cs" />
   </ItemGroup>
